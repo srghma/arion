@@ -2,7 +2,7 @@
 
 let
   inherit (lib) mkOption types;
-  inherit (types) listOf nullOr attrsOf string either int;
+  inherit (types) listOf nullOr attrsOf string either int bool;
 in
 {
   options = {
@@ -11,6 +11,10 @@ in
       default = [];
     };
     service.build.context = mkOption {
+      type = nullOr string;
+      default = null;
+    };
+    service.hostname = mkOption {
       type = nullOr string;
       default = null;
     };
@@ -31,6 +35,10 @@ in
     };
     service.working_dir = mkOption {
       type = nullOr string;
+      default = null;
+    };
+    service.privileged = mkOption {
+      type = nullOr bool;
       default = null;
     };
     service.entrypoint = mkOption {
